@@ -71,12 +71,13 @@ $(document).ready(function(){
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
-
+    	return false;
   	});
 
   	/*--- Hide information modal box ---*/
   	$("a.close").click(function(){
   		$(".overlay").fadeOut(1000);
+  		return false;
   	});
 
   	/*--- Take a guess ---*/
@@ -84,12 +85,20 @@ $(document).ready(function(){
   		if(e.keyCode == 13){
 			var myGuess = userGuess.val();
   			validateNumber(myGuess);
+  			return false;
   		};
+  	});
+
+	$("#guessButton").click(function(){
+  		var myGuess = userGuess.val();
+  		validateNumber(myGuess);
+  		return false;
   	});
 
   	/*--- Start a new game ---*/
   	$(".new").click(function(){
   		newGame();
+  		return false;
   	});
 
 });
