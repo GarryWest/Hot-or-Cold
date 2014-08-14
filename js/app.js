@@ -3,7 +3,7 @@ $(document).ready(function(){
 	
 	var secretNumber = Math.floor((Math.random(0) * 100) + 1);
 	var numGuesses = 0;
-	var lastGuess = 101;
+	var lastGuess = 0;
 	var userGuess = $('#userGuess');
 	var feedBack = $('#feedback');
 	var count = $('#count');
@@ -17,7 +17,19 @@ $(document).ready(function(){
 			feedBack.text("You Win!!! The Secret Number: "+guess);
 			userGuess.val("").focus();
 		} else {
-			if(Math.abs(secretNumber - guess) < Math.abs(secretNumber - lastGuess)){
+			if(lastGuess == 0) {
+				if (Math.abs(secretNumber - guess) > 50){
+					feedBack.text("You're ice cold!! Try again!!");
+				} else if (Math.abs(secretNumber - guess) > 30){
+					feedBack.text("You're cold!! Try again!!");
+				} else if (Math.abs(secretNumber - guess) > 20){
+					feedBack.text("You're warm!! Try again!!");
+				} else if (Math.abs(secretNumber - guess) > 10){
+					feedBack.text("You're hot!! Try again!!");
+				} else {
+					feedBack.text("You're very hot!! Try again!!");
+				};
+			} else if(Math.abs(secretNumber - guess) < Math.abs(secretNumber - lastGuess)){
 				feedBack.text("Getting warmer!! Try again!!");
 			} else if (Math.abs(secretNumber - guess) > Math.abs(secretNumber - lastGuess)) {
 				feedBack.text("Getting colder!! Try again!!");
